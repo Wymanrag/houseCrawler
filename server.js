@@ -1,38 +1,42 @@
-var express = require('express');
-var fs      = require('fs');
-var request = require('request');
-var cheerio = require('cheerio');
-var app     = express();
+const express = require('express');
+const fs      = require('fs');
+const request = require('request');
+const cheerio = require('cheerio');
+const app     = express();
 
 app.get('/scrape', function(req, res){
   // Let's scrape Anchorman 2
   url = 'http://www.imdb.com/title/tt1229340/';
 
   request(url, function(error, response, html){
+
+    let jsonOutput = { title : "", release : "", rating : ""};
+
     if(!error){
-      var $ = cheerio.load(html);
+      let $ = cheerio.load(html);
+      
+      console.log('this $', $)
 
-      var title, release, rating;
-      var json = { title : "", release : "", rating : ""};
-
+      let title, release, rating;
+  
       $('.title_wrapper').filter(function(){
-        var data = $(this);
+        let data = $(this);
         title = data.children().first().text().trim();
         release = data.children().last().children().last().text().trim();
 
-        json.title = title;
-        json.release = release;
+        jsonOutput.title = title;
+        jsonOutput.release = release;
       })
 
       $('.ratingValue').filter(function(){
-        var data = $(this);
+        let data = $(this);
         rating = data.text().trim();
 
-        json.rating = rating;
+        jsonOutput.rating = rating;
       })
     }
 
-    fs.writeFile('output.json', JSON.stringify(json, null, 4), function(err){
+    fs.writeFile('output.json', JSON.stringify(jsonOutput, null, 4), function(err){
       console.log('File successfully written! - Check your project directory for the output.json file');
     })
 
