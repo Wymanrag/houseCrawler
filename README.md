@@ -1,7 +1,7 @@
-node-web-scraper
+House Crawler
 ================
 
-Simple web scraper to get a movie name, release year and community rating from IMDB.
+Web scraper to get latest houses on market.
 To run this example use the following commands:
 
 ``` shell
