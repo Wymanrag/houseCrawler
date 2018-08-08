@@ -1,15 +1,15 @@
 const rp      = require('request-promise');
 const cheerio = require('cheerio');
 
-let crawler = {};
+const crawler = {};
 
 crawler.crawl = function(url) {
     let jsonOutput = {};
     let aparts = [];
 
-    url = 'https://www.imovirtual.com/comprar/apartamento/aveiro/?search%5Bfilter_float_price%3Ato%5D=250000&search%5Bdescription%5D=1';
+    //url = 'https://www.imovirtual.com/comprar/apartamento/aveiro/?search%5Bfilter_float_price%3Ato%5D=250000&search%5Bdescription%5D=1';
 
-    rp(url)
+    return rp(url)
     .then(function (htmlString) {
         let $ = cheerio.load(htmlString);
 
@@ -28,9 +28,8 @@ crawler.crawl = function(url) {
         numb +=1;
         aparts.push(jsonOutput)
         })
-        console.log('numb',numb, aparts)
-        if (res) {res.send(jsonOutput)}
-        else{return aparts}
+        //console.log('numb',numb, aparts)
+        return aparts;
     })
     .catch(function (err) {
         // Crawling failed...
