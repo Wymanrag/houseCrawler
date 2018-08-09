@@ -15,15 +15,16 @@ crawler.crawl = function(url) {
 
         console.log('this $', $)
 
-        let ref, price, topology, numb = 0, link;
+        let ref, price, topology, numb = 0, link, origin;
 
         $('article.offer-item').each(function(i, elem){
         let data = $(this);
         ref = data.attr('data-tracking-id');
         price = $(data).find('li.offer-item-price').text().trim();
         topology = $(data).find('li.offer-item-rooms').text();
-        link = data.attr('data-url')
-        jsonOutput = {ref, topology, price, link}
+        link = data.attr('data-url');
+        origin = 'Imovirtual'
+        jsonOutput = {ref, topology, price, link, origin}
         //console.log('obj: ', jsonOutput);
         numb +=1;
         aparts.push(jsonOutput)
