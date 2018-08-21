@@ -3,6 +3,7 @@ const crwalers = {
     imo : require('./crawlers/imovirtual')
 }
 const dbase = require('./dbase')
+const mailer = require('./mailer')
 
 let orquestra = {};
 
@@ -29,6 +30,7 @@ orquestra.main = function(req, res){
     })
     .then(function(result){
         console.log('WENT TO DB',result)
+        mailer.send();
         return true;
     })
     .catch(function(err){
