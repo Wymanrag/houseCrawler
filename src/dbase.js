@@ -80,7 +80,7 @@ database.markItemsProcessed = function(items){
                  SET consumed = true
                  WHERE house_uuid = ANY($1::uuid[])`
     let queryParams = [items];
-    console.log('getUnprocessedHouses query,queryParams: ',query,queryParams)
+    //console.log('getUnprocessedHouses query,queryParams: ',query,queryParams)
     return poolDb.queryDb(query, queryParams)
         .then(function (result) {
             return result.rows;

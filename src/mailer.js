@@ -36,7 +36,7 @@ mailer.send = function(){
             mail.html = mailer.buildHTML(houseItems);
             smtpTransport.sendMail(mail, function(error, response){
                 if(error){
-                    console.log(error);
+                    console.log('sendMail ERROR', error);
                     smtpTransport.close();
                     return false;
                 }
@@ -47,7 +47,7 @@ mailer.send = function(){
                 houseItems.forEach(element => {
                     houseUUIDs.push(element.house_uuid);
                 });
-                console.log('houseUUIDs', houseUUIDs)
+                //console.log('houseUUIDs', houseUUIDs)
                 return dbase.markItemsProcessed(houseUUIDs);
               
             });
