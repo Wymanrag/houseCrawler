@@ -6,6 +6,10 @@ var config = {
         user     : 'postgres',
         password : ''
      },
+    mail: {
+         user       : '',
+         password   : ''
+     },
 }
 
 module.exports = config
