@@ -25,11 +25,11 @@ orquestra.main = function(req, res){
             console.log('User asked for the Aparts')
             return true;
         }
-        console.log('RESULT', result, result.length)
+        console.log('Debug-> Got ', result.length, ' Apartments')
         return dbase.insertHouses(result);
     })
     .then(function(result){
-        console.log('WENT TO DB',result)
+        console.log('Debug-> Went to DB an inserted ',result.length, ' new aparts')
         mailer.send();
         return true;
     })

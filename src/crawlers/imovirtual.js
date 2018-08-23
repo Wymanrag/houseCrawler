@@ -13,7 +13,7 @@ crawler.crawl = function(url) {
     .then(function (htmlString) {
         let $ = cheerio.load(htmlString);
 
-        console.log('this $', $)
+        //console.log('this $', $)
 
         let ref, price, topology, numb = 0, link, origin;
 
