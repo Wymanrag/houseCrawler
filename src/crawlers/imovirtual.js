@@ -22,10 +22,15 @@ crawler.crawl = function(url) {
         ref = data.attr('data-tracking-id');
         price = $(data).find('li.offer-item-price').text().trim();
         topology = $(data).find('li.offer-item-rooms').text();
+        area = $(data).find('li.offer-item-area').text();
+        title = $(data).find('span.offer-item-title').text();
+        city = $(data).find('p.text-nowrap').text();
+        city = city.split(':');
+        city = city[1];
         link = data.attr('data-url');
-        origin = 'Imovirtual'
-        jsonOutput = {ref, topology, price, link, origin}
-        //console.log('obj: ', jsonOutput);
+        origin = 'Imovirtual';
+        jsonOutput = {ref, topology, price, link, origin, title, city, area};
+        console.log('area: ', area);
         numb +=1;
         aparts.push(jsonOutput)
         })

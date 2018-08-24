@@ -14,8 +14,8 @@ const smtpTransport = nodemailer.createTransport({
 
 const mail = {
     from: `House Crawler <${config.mail.user}>`,
-    to: "ze.pedro.rodrigues@gmail.com",
-    subject: "Send Email Using Node.js",
+    to: "ze.pedro.rodrigues@gmail.com, fr.mariamelo@gmail.com",
+    subject: "Crawler - New houses found",
     text: "Node.js New world for me",
     html: "<b>New world for me</b>"
 }
@@ -58,17 +58,20 @@ mailer.send = function(){
 mailer.buildHTML = function(aJson){
     let str = `
             
-    <h2>House Crawler</h2>
+    <h2>House Crawler - by Wymanrag</h2>
 
     <table style="width:100%">
       <tr>
         <th>Origin</th>
         <th>Price</th> 
+        <th>Title</th> 
+        <th>City</th> 
+        <th>Area</th> 
         <th>Link</th>
       </tr>`;
 
     let content = aJson.reduce(function(acum, curr){
-        return acum + '<tr><td>' + curr.origin + '</td><td>' + curr.price + '</td><td>' + curr.link + '</td></tr>'
+        return acum + '<tr><td>' + curr.origin + '</td><td>' + curr.price + '</td><td>' + curr.title + '</td><td>' +curr.city +'</td><td>' +curr.area + '</td><td><a href="' + curr.link + '">Link</a></td></tr>'
     }, '')
     
     str += content + '</table>';
