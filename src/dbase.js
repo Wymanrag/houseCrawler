@@ -37,7 +37,7 @@ database.insertHouses = function(houses){
             item.area
         );
     })
-    query += ' ON CONFLICT ON CONSTRAINT houses_primary_key DO UPDATE SET last_checked = now()' //case item exists updates last_checked
+    query += ' ON CONFLICT ON CONSTRAINT houses_primary_key DO UPDATE SET last_checked = now() RETURNING house_uuid' //case item exists updates last_checked
     //console.log('QUERY: ', query);
     //console.log('queryParams: ', queryParams);
 

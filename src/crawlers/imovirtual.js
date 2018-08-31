@@ -28,7 +28,7 @@ crawler.crawl = function(url) {
         city = city.split(':');
         city = city[1];
         link = data.attr('data-url');
-        origin = 'Imovirtual';
+        origin = 'Imo';
         jsonOutput = {ref, topology, price, link, origin, title, city, area};
         //console.log('area: ', area);
         numb +=1;
