@@ -38,8 +38,8 @@ database.insertHouses = function(houses){
         );
     })
     query += ' ON CONFLICT ON CONSTRAINT houses_primary_key DO UPDATE SET last_checked = now()' //case item exists updates last_checked
-    console.log('QUERY: ', query);
-    console.log('queryParams: ', queryParams);
+    //console.log('QUERY: ', query);
+    //console.log('queryParams: ', queryParams);
 
     return poolDb.queryDb(query, queryParams)
         .then(function (result) {

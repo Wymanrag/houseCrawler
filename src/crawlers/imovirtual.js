@@ -30,7 +30,7 @@ crawler.crawl = function(url) {
         link = data.attr('data-url');
         origin = 'Imovirtual';
         jsonOutput = {ref, topology, price, link, origin, title, city, area};
-        console.log('area: ', area);
+        //console.log('area: ', area);
         numb +=1;
         aparts.push(jsonOutput)
         })
