@@ -25,8 +25,8 @@ orquestra.main = function(req, res){
     });
 
     let urlsIdealista = [
-        'https://www.idealista.pt/comprar-casas/aveiro/com-preco-max_260000,t2,t3,t4-t5/?ordem=atualizado-desc',
-        'https://www.idealista.pt/comprar-casas/agueda/com-preco-max_260000,t2,t3,t4-t5/?ordem=atualizado-desc'
+        'http://www.idealista.pt/comprar-casas/aveiro/com-preco-max_260000,t2,t3,t4-t5/?ordem=atualizado-desc',
+        'http://www.idealista.pt/comprar-casas/agueda/com-preco-max_260000,t2,t3,t4-t5/?ordem=atualizado-desc'
     ];
 
     urlsIdealista.forEach(element => {
