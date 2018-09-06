@@ -2,7 +2,9 @@ global.config = require('../settings');
 const crwalers = {
     imo : require('./crawlers/imovirtual'),
     ide : require('./crawlers/idealista'),
-    tst : require('./crawlers/phantom')
+    //tst : require('./crawlers/phantom'),
+    //tst1 : require('./crawlers/phantom.1'),
+    tst2 : require('./crawlers/puppeteer')
 }
 const dbase = require('./dbase')
 const mailer = require('./mailer')
@@ -13,7 +15,9 @@ const debug = true;
 orquestra.main = function(req, res){
 
     console.log('Checking for apartments...')
-    crwalers.tst.crawl();
+    //crwalers.tst.crawl();
+    //crwalers.tst1.crawl();
+    //crwalers.tst2.crawl();
     
     let promissesArray = [];
     let urlsIMO = [
@@ -33,7 +37,7 @@ orquestra.main = function(req, res){
     ];
 
     urlsIdealista.forEach(element => {
-        promissesArray.push(crwalers.ide.crawl(element))
+        promissesArray.push(crwalers.tst2.crawl(element))
     });
 
     return Promise.all(promissesArray)
