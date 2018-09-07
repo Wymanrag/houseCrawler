@@ -1,4 +1,6 @@
 global.config = require('../settings');
+global.debug = true;
+
 const crwalers = {
     imo : require('./crawlers/imovirtual'),
     ide : require('./crawlers/idealista'),
@@ -10,7 +12,6 @@ const dbase = require('./dbase')
 const mailer = require('./mailer')
 
 let orquestra = {};
-const debug = true;
 
 orquestra.main = function(req, res){
 

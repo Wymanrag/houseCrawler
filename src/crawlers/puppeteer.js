@@ -5,7 +5,9 @@ let crawler = {};
 crawler.crawl = async (url) => {
       const browser = await puppeteer.launch();
       const page = await browser.newPage();
-      await page.setUserAgent('Some Test by Wymanrag v1 Instance/2342');
+      let userAgent = 'Some Test by Wymanrag v1 Instance/234';
+      userAgent = debug ? userAgent += '0' : userAgent += '1';
+      await page.setUserAgent(userAgent);
       await page.goto('https://www.idealista.pt/comprar-casas/aveiro/com-preco-max_260000,t2,t3,t4-t5/?ordem=atualizado-desc');
       //await page.screenshot({path: 'example.png'});
       user = await page.evaluate('navigator.userAgent');
@@ -13,7 +15,7 @@ crawler.crawl = async (url) => {
       let bodyHTML = await page.evaluate(() => document.body.innerHTML);
       //console.log('aaaaaaaaaa',bodyHTML)
       await browser.close();
-      baseUrl = 'www.idealista.pt'
+      baseUrl = 'www.idealista.pt';
       let $ = cheerio.load(bodyHTML);
       /*       topology = $('span.placeholder').text();
             console.log('LOADED CONTENT',topology); */
