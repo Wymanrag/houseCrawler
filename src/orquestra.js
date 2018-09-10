@@ -3,10 +3,10 @@ global.debug = true;
 
 const crwalers = {
     imo : require('./crawlers/imovirtual'),
-    ide : require('./crawlers/idealista'),
+    ide : require('./crawlers/puppeteer')
     //tst : require('./crawlers/phantom'),
     //tst1 : require('./crawlers/phantom.1'),
-    tst2 : require('./crawlers/puppeteer')
+    //tst2 : require('./crawlers/puppeteer')
 }
 const dbase = require('./dbase')
 const mailer = require('./mailer')
@@ -38,7 +38,7 @@ orquestra.main = function(req, res){
     ];
 
     urlsIdealista.forEach(element => {
-        promissesArray.push(crwalers.tst2.crawl(element))
+        promissesArray.push(crwalers.ide.crawl(element))
     });
 
     return Promise.all(promissesArray)
