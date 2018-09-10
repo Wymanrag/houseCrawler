@@ -11,7 +11,7 @@ crawler.crawl = async (url) => {
       await page.goto('https://www.idealista.pt/comprar-casas/aveiro/com-preco-max_260000,t2,t3,t4-t5/?ordem=atualizado-desc');
       //await page.screenshot({path: 'example.png'});
       user = await page.evaluate('navigator.userAgent');
-      console.log('useruser',user)
+      //console.log('useruser',user)
       let bodyHTML = await page.evaluate(() => document.body.innerHTML);
       //console.log('aaaaaaaaaa',bodyHTML)
       await browser.close();

@@ -3,10 +3,11 @@ global.debug = true;
 
 const crwalers = {
     imo : require('./crawlers/imovirtual'),
-    ide : require('./crawlers/puppeteer')
+    ide : require('./crawlers/puppeteer'),
     //tst : require('./crawlers/phantom'),
     //tst1 : require('./crawlers/phantom.1'),
     //tst2 : require('./crawlers/puppeteer')
+    sap : require('./crawlers/sapo')
 }
 const dbase = require('./dbase')
 const mailer = require('./mailer')
@@ -39,6 +40,15 @@ orquestra.main = function(req, res){
 
     urlsIdealista.forEach(element => {
         promissesArray.push(crwalers.ide.crawl(element))
+    });
+
+    let urlsSapo = [
+        'https://casa.sapo.pt/Venda/Apartamentos~Moradias/T2-ate-T6-ou-superior/Aveiro/?sa=1&or=10',
+        'https://casa.sapo.pt/Venda/Apartamentos~Moradias/T2-ate-T6-ou-superior/Agueda/?sa=1&or=10'
+    ];
+
+    urlsSapo.forEach(element => {
+        promissesArray.push(crwalers.sap.crawl(element))
     });
 
     return Promise.all(promissesArray)
