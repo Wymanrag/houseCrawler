@@ -1,17 +1,25 @@
 global.config = require('../settings');
+global.debug = true;
+
 const crwalers = {
     imo : require('./crawlers/imovirtual'),
-    ide : require('./crawlers/idealista')
+    ide : require('./crawlers/puppeteer')
+    //tst : require('./crawlers/phantom'),
+    //tst1 : require('./crawlers/phantom.1'),
+    //tst2 : require('./crawlers/puppeteer')
 }
 const dbase = require('./dbase')
 const mailer = require('./mailer')
 
 let orquestra = {};
-const debug = false;
 
 orquestra.main = function(req, res){
 
     console.log('Checking for apartments...')
+    //crwalers.tst.crawl();
+    //crwalers.tst1.crawl();
+    //crwalers.tst2.crawl();
+    
     let promissesArray = [];
     let urlsIMO = [
         'https://www.imovirtual.com/comprar/moradia/agueda/?search%5Bfilter_float_price%3Ato%5D=250000&search%5Bfilter_enum_rooms_num%5D%5B0%5D=1&search%5Bfilter_enum_rooms_num%5D%5B1%5D=2&search%5Bfilter_enum_rooms_num%5D%5B2%5D=3&search%5Bfilter_enum_rooms_num%5D%5B3%5D=4&search%5Bfilter_enum_rooms_num%5D%5B4%5D=5&search%5Bfilter_enum_rooms_num%5D%5B5%5D=6&search%5Bdescription%5D=1&search%5Border%5D=created_at_first%3Adesc&search%5Bcreated_since%5D=3&search%5Bsubregion_id%5D=1',
