@@ -7,7 +7,8 @@ const crwalers = {
     //tst : require('./crawlers/phantom'),
     //tst1 : require('./crawlers/phantom.1'),
     //tst2 : require('./crawlers/puppeteer')
-    sap : require('./crawlers/sapo')
+    sap : require('./crawlers/sapo'),
+    olx : require('./crawlers/olx')
 }
 const dbase = require('./dbase')
 const mailer = require('./mailer')
@@ -49,6 +50,17 @@ orquestra.main = function(req, res){
 
     urlsSapo.forEach(element => {
         promissesArray.push(crwalers.sap.crawl(element))
+    });
+
+    let urlsOlx = [
+        'https://www.olx.pt/imoveis/apartamento-casa-a-venda/apartamentos-venda/gloria/?search%5Bdescription%5D=1&search%5Bprivate_business%5D=private&search%5Border%5D=created_at%3Adesc',
+        'https://www.olx.pt/imoveis/casas-moradias-para-arrendar-vender/gloria/?search%5Bdescription%5D=1&search%5Bprivate_business%5D=private&search%5Border%5D=created_at%3Adesc',
+        'https://www.olx.pt/imoveis/casas-moradias-para-arrendar-vender/moradias-venda/agueda-agueda/?search%5Bdescription%5D=1&search%5Bprivate_business%5D=private&search%5Border%5D=created_at%3Adesc',
+        'https://www.olx.pt/imoveis/apartamento-casa-a-venda/apartamentos-venda/agueda-agueda/?search%5Bdescription%5D=1&search%5Bprivate_business%5D=private&search%5Border%5D=created_at%3Adesc'
+    ];
+
+    urlsOlx.forEach(element => {
+        promissesArray.push(crwalers.olx.crawl(element))
     });
 
     return Promise.all(promissesArray)
