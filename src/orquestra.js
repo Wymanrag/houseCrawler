@@ -8,7 +8,8 @@ const crwalers = {
     //tst1 : require('./crawlers/phantom.1'),
     //tst2 : require('./crawlers/puppeteer')
     sap : require('./crawlers/sapo'),
-    olx : require('./crawlers/olx')
+    olx : require('./crawlers/olx'),
+    era : require('./crawlers/era')
 }
 const dbase = require('./dbase')
 const mailer = require('./mailer')
@@ -23,6 +24,16 @@ orquestra.main = function(req, res){
     //crwalers.tst2.crawl();
     
     let promissesArray = [];
+
+/*     let urlsIdealista = [
+        'https://www.idealista.pt/comprar-casas/aveiro/com-preco-max_260000,t2,t3,t4-t5/?ordem=atualizado-desc',
+        'https://www.idealista.pt/comprar-casas/agueda/com-preco-max_260000,t2,t3,t4-t5/?ordem=atualizado-desc'
+    ];
+
+    urlsIdealista.forEach(element => {
+        promissesArray.push(crwalers.ide.crawl(element))
+    }); */
+
     let urlsIMO = [
         'https://www.imovirtual.com/comprar/moradia/agueda/?search%5Bfilter_float_price%3Ato%5D=250000&search%5Bfilter_enum_rooms_num%5D%5B0%5D=1&search%5Bfilter_enum_rooms_num%5D%5B1%5D=2&search%5Bfilter_enum_rooms_num%5D%5B2%5D=3&search%5Bfilter_enum_rooms_num%5D%5B3%5D=4&search%5Bfilter_enum_rooms_num%5D%5B4%5D=5&search%5Bfilter_enum_rooms_num%5D%5B5%5D=6&search%5Bdescription%5D=1&search%5Border%5D=created_at_first%3Adesc&search%5Bcreated_since%5D=3&search%5Bsubregion_id%5D=1',
         'https://www.imovirtual.com/comprar/apartamento/agueda/?search%5Bfilter_float_price%3Ato%5D=250000&search%5Bfilter_enum_rooms_num%5D%5B0%5D=1&search%5Bfilter_enum_rooms_num%5D%5B1%5D=2&search%5Bfilter_enum_rooms_num%5D%5B2%5D=3&search%5Bfilter_enum_rooms_num%5D%5B3%5D=4&search%5Bfilter_enum_rooms_num%5D%5B4%5D=5&search%5Bfilter_enum_rooms_num%5D%5B5%5D=6&search%5Bdescription%5D=1&search%5Border%5D=created_at_first%3Adesc&search%5Bcreated_since%5D=3&search%5Bsubregion_id%5D=1',
@@ -32,15 +43,6 @@ orquestra.main = function(req, res){
 
     urlsIMO.forEach(element => {
         promissesArray.push(crwalers.imo.crawl(element))
-    });
-
-    let urlsIdealista = [
-        'https://www.idealista.pt/comprar-casas/aveiro/com-preco-max_260000,t2,t3,t4-t5/?ordem=atualizado-desc',
-        'https://www.idealista.pt/comprar-casas/agueda/com-preco-max_260000,t2,t3,t4-t5/?ordem=atualizado-desc'
-    ];
-
-    urlsIdealista.forEach(element => {
-        promissesArray.push(crwalers.ide.crawl(element))
     });
 
     let urlsSapo = [
@@ -63,13 +65,25 @@ orquestra.main = function(req, res){
         promissesArray.push(crwalers.olx.crawl(element))
     });
 
+    let urlsEra = [
+        'https://www.era.pt/imoveis/default.aspx?pg=1&o=1&t=1&a=&dd=01&cc=05&ff=01,15,05,17,13,10&z=&cp=&nq=2&p=&ar=&ca=00000000&ct=0000&or=41&idioma=pt',
+        'https://www.era.pt/imoveis/default.aspx?pg=1&o=1&t=2&a=&dd=01&cc=05&ff=01,15,05,17,13,10&z=&cp=&nq=2&p=&ar=&ca=00000000&ct=0000&or=41&idioma=pt',
+        'https://www.era.pt/imoveis/default.aspx?pg=1&o=1&t=2&a=&dd=01&cc=01&ff=21,24,25,26&z=&cp=&nq=2&p=&ar=&ca=00000000&ct=0000&or=41&idioma=pt',
+        'https://www.era.pt/imoveis/default.aspx?pg=1&o=1&t=1&a=&dd=01&cc=01&ff=21,24,25,26&z=&cp=&nq=2&p=&ar=&ca=00000000&ct=0000&or=41&idioma=pt'
+    ];
+
+    urlsEra.forEach(element => {
+        promissesArray.push(crwalers.era.crawl(element))
+    });
+
+
     return Promise.all(promissesArray)
     .then(function(result){
         result = [].concat(...result)
         let cleanedRes = orquestra.removeDuplicates(result);
 
         if (!result.length){
-            console.log('No results from IMO')
+            console.log('No results from Crawlers')
             return false;
         }
         if (res) {
