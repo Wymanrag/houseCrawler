@@ -13,7 +13,7 @@ crawler.crawl = function(url) {
           'User-Agent': 'Some Test by Wymanrag v1 Instance/2347'
         }
       };
-    baseUrl = 'https://casa.olx.pt';
+    let baseUrl = 'https://casa.olx.pt';
     
     return rp(options)
     .then(function (htmlString) {

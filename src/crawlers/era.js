@@ -12,7 +12,7 @@ crawler.crawl = function(url) {
           'User-Agent': 'Some Test by Wymanrag v1 Instance/2347'
         }
       };
-    baseUrl = 'https://www.era.pt';
+    let baseUrl = 'https://www.era.pt';
     
     return rp(options)
     .then(function (htmlString) {
