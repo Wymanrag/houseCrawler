@@ -9,7 +9,8 @@ const crwalers = {
     //tst2 : require('./crawlers/puppeteer')
     sap : require('./crawlers/sapo'),
     olx : require('./crawlers/olx'),
-    era : require('./crawlers/era')
+    era : require('./crawlers/era'),
+    cju : require('./crawlers/custoJusto')
 }
 const dbase = require('./dbase')
 const mailer = require('./mailer')
@@ -55,6 +56,15 @@ const urls = [
         urls: [
             'https://www.idealista.pt/comprar-casas/aveiro/com-preco-max_260000,t2,t3,t4-t5/?ordem=atualizado-desc',
             'https://www.idealista.pt/comprar-casas/agueda/com-preco-max_260000,t2,t3,t4-t5/?ordem=atualizado-desc'
+        ]
+    },
+    {
+        site: 'cju',
+        urls: [
+            'https://www.custojusto.pt/aveiro/aveiro/apartamentos-venda?ros=5',
+            'https://www.custojusto.pt/aveiro/agueda/apartamentos-venda?ros=5',
+            'https://www.custojusto.pt/aveiro/aveiro/moradias-venda?ros=5',
+            'https://www.custojusto.pt/aveiro/agueda/moradias-venda?ros=5'
         ]
     }
 ]
