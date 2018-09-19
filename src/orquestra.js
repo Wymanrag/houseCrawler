@@ -69,7 +69,8 @@ orquestra.main = function(req, res){
         'https://www.era.pt/imoveis/default.aspx?pg=1&o=1&t=1&a=&dd=01&cc=05&ff=01,15,05,17,13,10&z=&cp=&nq=2&p=&ar=&ca=00000000&ct=0000&or=41&idioma=pt',
         'https://www.era.pt/imoveis/default.aspx?pg=1&o=1&t=2&a=&dd=01&cc=05&ff=01,15,05,17,13,10&z=&cp=&nq=2&p=&ar=&ca=00000000&ct=0000&or=41&idioma=pt',
         'https://www.era.pt/imoveis/default.aspx?pg=1&o=1&t=2&a=&dd=01&cc=01&ff=21,24,25,26&z=&cp=&nq=2&p=&ar=&ca=00000000&ct=0000&or=41&idioma=pt',
-        'https://www.era.pt/imoveis/default.aspx?pg=1&o=1&t=1&a=&dd=01&cc=01&ff=21,24,25,26&z=&cp=&nq=2&p=&ar=&ca=00000000&ct=0000&or=41&idioma=pt'
+        'https://www.era.pt/imoveis/default.aspx?pg=1&o=1&t=1&a=&dd=01&cc=01&ff=21,24,25,26&z=&cp=&nq=2&p=&ar=&ca=00000000&ct=0000&or=41&idioma=pt',
+        'https://www.era.pt/imoveis/default.aspx?pg=1&o=1&t=&a=&dd=01&cc=10&ff=06&z=Praia%20Costa%20Nova,Praia%20da%20Barra&cp=&nq=0&p=&ar=&ca=00000000&ct=0000&or=41&idioma=pt'
     ];
 
     urlsEra.forEach(element => {
