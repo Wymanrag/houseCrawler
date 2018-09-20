@@ -14,7 +14,7 @@ const smtpTransport = nodemailer.createTransport({
 
 const mail = {
     from: `House Crawler <${config.mail.user}>`,
-    to: "ze.pedro.rodrigues@gmail.com, fr.mariamelo@gmail.com",
+    to: "ze.pedro.rodrigues@gmail.com",
     subject: "Crawler - New houses found",
     text: "Node.js New world for me",
     html: "<b>New world for me</b>"
@@ -62,6 +62,7 @@ mailer.buildHTML = function(aJson){
 
     <table style="width:100%">
       <tr>
+        <th>Image</th>
         <th>Origin</th>
         <th>Price</th> 
         <th>Title</th> 
@@ -71,7 +72,9 @@ mailer.buildHTML = function(aJson){
       </tr>`;
 
     let content = aJson.reduce(function(acum, curr){
-        return acum + '<tr><td>' + curr.origin + '</td><td>' + curr.price + '</td><td>' + curr.title + '</td><td>' +curr.city +'</td><td>' +curr.area + '</td><td><a href="' + curr.link + '">Link</a></td></tr>'
+        console.log('curr',curr)
+        //return acum + '<tr><td>' + curr.origin + '</td><td>' + curr.price + '</td><td>' + curr.title + '</td><td>' +curr.city +'</td><td>' +curr.area + '</td><td><a href="' + curr.link + '">Link</a></td></tr>'
+        return acum + `<tr><td><img src="${curr.image}" height=50 width=50"></img><td>` + curr.origin + '</td><td>' + curr.price + '</td><td>' + curr.title + '</td><td>' +curr.city +'</td><td>' +curr.area + '</td><td><a href="' + curr.link + '">Link</a></td></tr>'
     }, '')
     
     str += content + '</table>';

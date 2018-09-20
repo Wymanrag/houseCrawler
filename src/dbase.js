@@ -15,7 +15,7 @@ database.getHouses = function(){
  * @param  {array} params Array of objects. Each with one house details
  */
 database.insertHouses = function(houses){
-    let query = "INSERT INTO public.houses (item_ref, price, topology, link, origin, consumed, city, title, area) VALUES ";
+    let query = "INSERT INTO public.houses (item_ref, price, topology, link, origin, consumed, city, title, area, image) VALUES ";
     let queryParams = [];
     let len = 0;
 
@@ -24,7 +24,7 @@ database.insertHouses = function(houses){
         //console.log('item: ',item)
         
         if (len) {query += ','} //case not the first element, add ','
-        query += `($${len + 1}, $${len + 2}, $${len + 3}, $${len + 4}, $${len + 5}, false, $${len + 6}, $${len + 7}, $${len + 8})`;
+        query += `($${len + 1}, $${len + 2}, $${len + 3}, $${len + 4}, $${len + 5}, false, $${len + 6}, $${len + 7}, $${len + 8}, $${len + 9})`;
         let price = Number(item.price.replace(/\D/g,"")) //trim currency //TODO -> crawler
         queryParams.push(
             item.ref,
@@ -34,7 +34,8 @@ database.insertHouses = function(houses){
             item.origin,
             item.city,
             item.title,
-            item.area
+            item.area,
+            item.image
         );
     })
     query += ' ON CONFLICT ON CONSTRAINT houses_primary_key DO UPDATE SET last_checked = now() RETURNING house_uuid' //case item exists updates last_checked
@@ -59,7 +60,8 @@ database.getUnprocessedHouses = function(){
                     link,
                     title,
                     city,
-                    area
+                    area,
+                    image
                 from
                     public.houses
                 where
@@ -83,7 +85,7 @@ database.markItemsProcessed = function(items){
         return [];
     }
     let query = `UPDATE public.houses 
-                 SET consumed = true
+                 SET consumed = false
                  WHERE house_uuid = ANY($1::uuid[])`
     let queryParams = [items];
     //console.log('getUnprocessedHouses query,queryParams: ',query,queryParams)
