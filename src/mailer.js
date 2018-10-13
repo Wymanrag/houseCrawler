@@ -70,7 +70,6 @@ mailer.buildHTML = function(aJson){
       </tr>`;
 
     let content = aJson.reduce(function(acum, curr){
-        console.log('curr',curr)
         return acum + `<tr><td><img src="${curr.image}" height=50 width=50"></img><td>` + curr.origin + '</td><td>' + curr.price + '</td><td>' + curr.title + '</td><td>' +curr.city +'</td><td>' +curr.area + '</td><td><a href="' + curr.link + '">Link</a></td></tr>'
     }, '')
     

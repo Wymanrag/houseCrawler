@@ -21,7 +21,6 @@ database.insertHouses = function(houses){
 
     houses.map(function(item){
         len = queryParams.length;
-        //console.log('item: ',item)
         
         if (len) {query += ','} //case not the first element, add ','
         query += `($${len + 1}, $${len + 2}, $${len + 3}, $${len + 4}, $${len + 5}, false, $${len + 6}, $${len + 7}, $${len + 8}, $${len + 9})`;
@@ -39,8 +38,6 @@ database.insertHouses = function(houses){
         );
     })
     query += ' ON CONFLICT ON CONSTRAINT houses_primary_key DO UPDATE SET last_checked = now() RETURNING house_uuid' //case item exists updates last_checked
-    //console.log('QUERY: ', query);
-    //console.log('queryParams: ', queryParams);
 
     return poolDb.queryDb(query, queryParams)
         .then(function (result) {
@@ -88,7 +85,6 @@ database.markItemsProcessed = function(items){
                  SET consumed = true
                  WHERE house_uuid = ANY($1::uuid[])`
     let queryParams = [items];
-    //console.log('getUnprocessedHouses query,queryParams: ',query,queryParams)
     return poolDb.queryDb(query, queryParams)
         .then(function (result) {
             return result.rows;

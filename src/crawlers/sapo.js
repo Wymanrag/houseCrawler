@@ -6,7 +6,6 @@ const crawler = {};
 crawler.crawl = function(url) {
     let jsonOutput = {};
     let aparts = [];
-    //console.log('URL', url)
     let options = {
         url: url,
         headers: {
@@ -18,8 +17,6 @@ crawler.crawl = function(url) {
     return rp(options)
     .then(function (htmlString) {
         let $ = cheerio.load(htmlString);
-
-        //console.log('this $', $)
 
         let ref, price, topology, link, origin, image;
 
@@ -41,7 +38,6 @@ crawler.crawl = function(url) {
             aparts.push(jsonOutput)
     
         })
-        //console.log('numb',numb, aparts)
         //throw new Error('Manual Stop')
         return aparts;
     })

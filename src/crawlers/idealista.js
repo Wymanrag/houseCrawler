@@ -17,7 +17,6 @@ crawler.crawl = function(url) {
     return rp(options)
     .then(function (htmlString) {
         let $ = cheerio.load(htmlString);
-        //console.log('this $', $)
 
         let ref, price, topology, link, origin;
         $('article').each(function(i, elem){
