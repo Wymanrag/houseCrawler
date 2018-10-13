@@ -6,7 +6,6 @@ const crawler = {};
 crawler.crawl = function(url) {
     let jsonOutput = {};
     let aparts = [];
-    //console.log('URL', url)
     let options = {
         url: url,
         headers: {
@@ -19,12 +18,9 @@ crawler.crawl = function(url) {
     .then(function (htmlString) {
         let $ = cheerio.load(htmlString);
 
-        //console.log('this $', $)
-
         let ref, price, topology, link, origin, image;
         nrAnuncios = $('div.dontHasPromoted').find('h2').text();
         nrAnuncios=nrAnuncios.split(' ')[1];
-        //console.log('numb',nrAnuncios)
 
         $('tr.wrap').each(function(i, elem){
             if(i<nrAnuncios){
@@ -32,7 +28,6 @@ crawler.crawl = function(url) {
                 obj = data.attr('data-features')
                 if(obj){
                     obj = JSON.parse(obj)
-                    //console.log('obj',obj)
                 }
                 title = $(data).find('a.marginright5').text().trim();
                 price = $(data).find('p.price').text().trim();

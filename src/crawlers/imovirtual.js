@@ -13,8 +13,6 @@ crawler.crawl = function(url) {
     .then(function (htmlString) {
         let $ = cheerio.load(htmlString);
 
-        //console.log('this $', $)
-
         let ref, price, topology, numb = 0, link, origin, image;
 
         $('article.offer-item').each(function(i, elem){
@@ -37,7 +35,6 @@ crawler.crawl = function(url) {
             aparts.push(jsonOutput)
         })
         //throw new Error('STOPED')
-        console.log('Aparts:', aparts)
         return aparts;
     })
     .catch(function (err) {
