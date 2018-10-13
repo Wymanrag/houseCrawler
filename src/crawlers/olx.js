@@ -21,7 +21,7 @@ crawler.crawl = function(url) {
 
         //console.log('this $', $)
 
-        let ref, price, topology, link, origin;
+        let ref, price, topology, link, origin, image;
         nrAnuncios = $('div.dontHasPromoted').find('h2').text();
         nrAnuncios=nrAnuncios.split(' ')[1];
         //console.log('numb',nrAnuncios)
@@ -42,11 +42,12 @@ crawler.crawl = function(url) {
                 link = $(data).find('a.marginright5').attr('href');
                 origin = 'Olx';
                 ref =  $(data).find('table.fixed').attr('data-id');
-                jsonOutput = {ref, topology, price, link, origin, title, city, area};
+                image = $(data).find('img.fleft').attr('src');
+                jsonOutput = {ref, topology, price, link, origin, title, city, area, image};
                 aparts.push(jsonOutput)
             }
         })
-        //console.log('numb', aparts.length)
+        //throw new Error('Manual Stop')
         return aparts;
     })
     .catch(function (err) {

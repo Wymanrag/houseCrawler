@@ -15,26 +15,29 @@ crawler.crawl = function(url) {
 
         //console.log('this $', $)
 
-        let ref, price, topology, numb = 0, link, origin;
+        let ref, price, topology, numb = 0, link, origin, image;
 
         $('article.offer-item').each(function(i, elem){
-        let data = $(this);
-        ref = data.attr('data-tracking-id');
-        price = $(data).find('li.offer-item-price').text().trim();
-        topology = $(data).find('li.offer-item-rooms').text();
-        area = $(data).find('li.offer-item-area').text();
-        title = $(data).find('span.offer-item-title').text();
-        city = $(data).find('p.text-nowrap').text();
-        city = city.split(':');
-        city = city[1];
-        link = data.attr('data-url');
-        origin = 'Imo';
-        jsonOutput = {ref, topology, price, link, origin, title, city, area};
-        //console.log('area: ', area);
-        numb +=1;
-        aparts.push(jsonOutput)
+            let data = $(this);
+            ref = data.attr('data-tracking-id');
+            price = $(data).find('li.offer-item-price').text().trim();
+            topology = $(data).find('li.offer-item-rooms').text();
+            area = $(data).find('li.offer-item-area').text();
+            title = $(data).find('span.offer-item-title').text();
+            city = $(data).find('p.text-nowrap').text();
+            city = city.split(':');
+            city = city[1];
+            link = data.attr('data-url');
+            origin = 'Imo';
+            image = $(data).find('span.img-cover').attr('style');
+            const reg = /\((.+)\)/g;
+            image = reg.exec(image)[1]
+            jsonOutput = {ref, topology, price, link, origin, title, city, area, image};
+            numb +=1;
+            aparts.push(jsonOutput)
         })
-        //console.log('numb',numb, aparts)
+        //throw new Error('STOPED')
+        console.log('Aparts:', aparts)
         return aparts;
     })
     .catch(function (err) {

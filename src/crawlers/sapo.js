@@ -21,7 +21,7 @@ crawler.crawl = function(url) {
 
         //console.log('this $', $)
 
-        let ref, price, topology, link, origin;
+        let ref, price, topology, link, origin, image;
 
         $('div.searchResultProperty').each(function(i, elem){
             let data = $(this);
@@ -36,11 +36,13 @@ crawler.crawl = function(url) {
             link = baseUrl + $(link).find('a.photoLayer').attr('href');
             origin = 'Sapo';
             ref = link;
-            jsonOutput = {ref, topology, price, link, origin, title, city, area};
+            image = $(data).find('img').attr('data-original');
+            jsonOutput = {ref, topology, price, link, origin, title, city, area, image};
             aparts.push(jsonOutput)
     
         })
         //console.log('numb',numb, aparts)
+        //throw new Error('Manual Stop')
         return aparts;
     })
     .catch(function (err) {

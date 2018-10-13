@@ -1,5 +1,5 @@
 global.config = require('../settings');
-global.debug = true;
+global.debug = false;
 
 const crwalers = {
     imo : require('./crawlers/imovirtual'),
