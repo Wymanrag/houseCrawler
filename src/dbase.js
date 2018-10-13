@@ -85,7 +85,7 @@ database.markItemsProcessed = function(items){
         return [];
     }
     let query = `UPDATE public.houses 
-                 SET consumed = false
+                 SET consumed = true
                  WHERE house_uuid = ANY($1::uuid[])`
     let queryParams = [items];
     //console.log('getUnprocessedHouses query,queryParams: ',query,queryParams)

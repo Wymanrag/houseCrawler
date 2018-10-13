@@ -7,10 +7,10 @@ const crwalers = {
     //tst : require('./crawlers/phantom'),
     //tst1 : require('./crawlers/phantom.1'),
     //tst2 : require('./crawlers/puppeteer')
-/*     sap : require('./crawlers/sapo'),
+    sap : require('./crawlers/sapo'),
     olx : require('./crawlers/olx'),
     era : require('./crawlers/era'),
-    cju : require('./crawlers/custoJusto') */
+    cju : require('./crawlers/custoJusto')
 }
 const dbase = require('./dbase')
 const mailer = require('./mailer')

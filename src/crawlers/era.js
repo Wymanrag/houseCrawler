@@ -18,7 +18,7 @@ crawler.crawl = function(url) {
     .then(function (htmlString) {
         let $ = cheerio.load(htmlString);
 
-        let ref, price, topology, link, origin;
+        let ref, price, topology, link, origin, image;
 
         $('td').each(function(i, elem){
             let data = $(this);
@@ -48,13 +48,15 @@ crawler.crawl = function(url) {
                 origin = 'Era';
                 link = baseUrl + $($(data).find('div.blockLeft.img').children()[0]).attr('href')
                 ref = link;
-                jsonOutput = {ref, topology, price, link, origin, title, city, area};
+                image = $(data).find('img.js-imagescale').attr('src')
+                jsonOutput = {ref, topology, price, link, origin, title, city, area, image};
                 aparts.push(jsonOutput)
 
                 //console.log('jsonOutput',jsonOutput)
             }
         })
         //console.log('numb', aparts.length)
+        //throw new Error ('Manual Stop')
         return aparts;
     })
     .catch(function (err) {

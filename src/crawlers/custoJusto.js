@@ -18,7 +18,7 @@ crawler.crawl = function(url) {
     .then(function (htmlString) {
         let $ = cheerio.load(htmlString);
 
-        let ref, price, topology, link, origin;
+        let ref, price, topology, link, origin, image;
 
         $('div.col-md-9').children().each(function(i, elem){
             let data = $(this);
@@ -32,12 +32,15 @@ crawler.crawl = function(url) {
                 area = '';
                 topology = '';
                 origin = 'Cju';
-                jsonOutput = {ref, topology, price, link, origin, title, city, area};
+                image = $(data).find('img.img-responsive').attr('src') ||
+                        $(data).find('img.img-responsive').attr('data-src');
+                jsonOutput = {ref, topology, price, link, origin, title, city, area, image};
                 aparts.push(jsonOutput) 
             };
                 //console.log('jsonOutput',jsonOutput)
         });
         //console.log('numb', aparts.length)
+        //throw new Error('Manual Stop')
         return aparts;
     })
     .catch(function (err) {
