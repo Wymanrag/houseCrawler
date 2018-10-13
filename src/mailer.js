@@ -14,7 +14,7 @@ const smtpTransport = nodemailer.createTransport({
 
 const mail = {
     from: `House Crawler <${config.mail.user}>`,
-    to: "ze.pedro.rodrigues@gmail.com",
+    to: "ze.pedro.rodrigues@gmail.com, fr.mariamelo@gmail.com",
     subject: "Crawler - New houses found",
     text: "Node.js New world for me",
     html: "<b>New world for me</b>"
@@ -32,7 +32,6 @@ mailer.send = function(){
             houseItems = houses;
             let mailSent;
             mail.text += JSON.stringify(houseItems[1]);
-            //console.log('HOUUUSSSSEEEESSS', mail.text)
             mail.html = mailer.buildHTML(houseItems);
             smtpTransport.sendMail(mail, function(error, response){
                 if(error){
@@ -47,7 +46,6 @@ mailer.send = function(){
                 houseItems.forEach(element => {
                     houseUUIDs.push(element.house_uuid);
                 });
-                //console.log('houseUUIDs', houseUUIDs)
                 return dbase.markItemsProcessed(houseUUIDs);
               
             });
@@ -73,7 +71,6 @@ mailer.buildHTML = function(aJson){
 
     let content = aJson.reduce(function(acum, curr){
         console.log('curr',curr)
-        //return acum + '<tr><td>' + curr.origin + '</td><td>' + curr.price + '</td><td>' + curr.title + '</td><td>' +curr.city +'</td><td>' +curr.area + '</td><td><a href="' + curr.link + '">Link</a></td></tr>'
         return acum + `<tr><td><img src="${curr.image}" height=50 width=50"></img><td>` + curr.origin + '</td><td>' + curr.price + '</td><td>' + curr.title + '</td><td>' +curr.city +'</td><td>' +curr.area + '</td><td><a href="' + curr.link + '">Link</a></td></tr>'
     }, '')
     

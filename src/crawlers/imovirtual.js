@@ -32,13 +32,10 @@ crawler.crawl = function(url) {
             image = $(data).find('span.img-cover').attr('style');
             const reg = /\((.+)\)/g;
             image = reg.exec(image)[1]
-            //console.log('imageimageimage02',image)
             jsonOutput = {ref, topology, price, link, origin, title, city, area, image};
-            //console.log('area: ', area);
             numb +=1;
             aparts.push(jsonOutput)
         })
-        //console.log('numb',numb, aparts)
         //throw new Error('STOPED')
         console.log('Aparts:', aparts)
         return aparts;

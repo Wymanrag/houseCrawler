@@ -78,21 +78,8 @@ orquestra.main = function(req, res){
     let promissesArray = [];
     promissesArray = orquestra.mapUrlsCrawlers(crwalers,urls);
   
-/*     return Promise.all(
-        [{ 
-            image: 'https://apollo-ireland.akamaized.net/v1/files/eyJmbiI6ImlwMXVseWZnOHRpOS1BUFQiLCJ3IjpbeyJmbiI6IjRqYWZwbDloM2ZndC1BUFQiLCJzIjoiMTQiLCJwIjoiMTAsLTEwIiwiYSI6IjAifV19.RelsljDHMDQ1HpHr4yUr8EvxM2xwSbabwp4fFXt129c/image;s=655x491;q=80',
-            ref: '10829823',
-            topology: 'T3',
-            price: '30 200 €',
-            link: 'https://www.imovirtual.com/anuncio/moradia-valongo-do-do-vouga-agueda-IDJrkx.html#8e47c3adeb',
-            origin: 'Imo',
-            title: 'Moradia - Valongo do Vouga, Águeda',
-            city: ' Valongo do Vouga, Aveiro',
-            area: '100 m²terreno 120 m²' }
-        ]) */
     return Promise.all(promissesArray)
     .then(function(result){
-        //console.log('result',result[0])
         result = [].concat(...result)
         let cleanedRes = orquestra.removeDuplicates(result);
 

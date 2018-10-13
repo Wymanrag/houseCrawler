@@ -43,12 +43,10 @@ crawler.crawl = function(url) {
                 origin = 'Olx';
                 ref =  $(data).find('table.fixed').attr('data-id');
                 image = $(data).find('img.fleft').attr('src');
-                //console.log('image',image)
                 jsonOutput = {ref, topology, price, link, origin, title, city, area, image};
                 aparts.push(jsonOutput)
             }
         })
-        //console.log('numb', aparts.length)
         //throw new Error('Manual Stop')
         return aparts;
     })
