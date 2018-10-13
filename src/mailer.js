@@ -75,7 +75,6 @@ mailer.buildHTML = function(aJson){
     }, '')
     
     str += content + '</table>';
-    //console.log('HHHHHHHH', str)
     return str;
 } 
 
