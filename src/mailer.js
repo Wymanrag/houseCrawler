@@ -70,7 +70,7 @@ mailer.buildHTML = function(aJson){
       </tr>`;
 
     let content = aJson.reduce(function(acum, curr){
-        let price = (Number(curr.price.replace(/[^0-9.-]+/g,""))/100000).toFixed(0);
+        let price = (Number(curr.price.replace(/[^0-9.-]+/g,""))/1000).toFixed(0);
         return acum + `<tr><td><a href="${curr.link}"><img src="${curr.image}" height=50 width=50"></img></a><td>` + curr.origin + '</td><td>' + price + 'm€</td><td>' + curr.title + '</td><td>' +curr.city +'</td><td>' +curr.area + '</td></tr>'
     }, '')
     
