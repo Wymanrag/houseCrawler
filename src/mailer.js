@@ -53,6 +53,7 @@ mailer.send = function(){
         })
 }
 
+/* Builds the HTML email contente, based on the JSON that contains each ad */
 mailer.buildHTML = function(aJson){
     let str = `
             
@@ -66,11 +67,11 @@ mailer.buildHTML = function(aJson){
         <th>Title</th> 
         <th>City</th> 
         <th>Area</th> 
-        <th>Link</th>
       </tr>`;
 
     let content = aJson.reduce(function(acum, curr){
-        return acum + `<tr><td><img src="${curr.image}" height=50 width=50"></img><td>` + curr.origin + '</td><td>' + curr.price + '</td><td>' + curr.title + '</td><td>' +curr.city +'</td><td>' +curr.area + '</td><td><a href="' + curr.link + '">Link</a></td></tr>'
+        let price = (Number(curr.price.replace(/[^0-9.-]+/g,""))/100000).toFixed(0);
+        return acum + `<tr><td><a href="${curr.link}"><img src="${curr.image}" height=50 width=50"></img></a><td>` + curr.origin + '</td><td>' + price + 'm€</td><td>' + curr.title + '</td><td>' +curr.city +'</td><td>' +curr.area + '</td></tr>'
     }, '')
     
     str += content + '</table>';
