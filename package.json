@@ -4,15 +4,21 @@
   "description": "Scrape le web.",
   "main": "server.js",
   "author": "Wymanrag",
-  "scripts": { 
-    "start" : "node server.js" 
+  "scripts": {
+    "start": "node server.js",
+    "heroku-postbuild": "npm install & npm start"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/Wymanrag/houseCrawler"
   },
+  "engines": {
+    "node": "10.13.0",
+    "npm": "6.4.1"
+  },
   "dependencies": {
     "cheerio": "latest",
+    "dotenv": "^6.2.0",
     "express": "latest",
     "nodemailer": "^4.6.7",
     "pg": "^7.4.3",

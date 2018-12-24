@@ -1,6 +1,8 @@
 const express   = require('express');
 const app       = express();
 const orquestra = require('./src/orquestra');
+// load all env variables from .env file into process.env object.
+require(‘dotenv’).config()
 
 app.get('/scrape', orquestra.main);
 
